@@ -23,6 +23,6 @@ platforms:
       pid_one_command: /usr/lib/systemd/systemd
 
 suites:
-  - name: harden
+  - name: default
     run_list:
       - recipe[haproxy::default]
