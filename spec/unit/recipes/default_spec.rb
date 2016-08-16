@@ -7,14 +7,17 @@
 require 'spec_helper'
 
 describe 'haproxy::default' do
-  context 'When all attributes are default, on an unspecified platform' do
+  context 'When all attributes are default on RHEL family' do
     let(:chef_run) do
       runner = ChefSpec::ServerRunner.new
+      runner.node.automatic['os'] = 'linux'
+      runner.node.automatic['platform_family'] = 'rhel'
+      runner.node.automatic['virtualization']['system'] = 'docker'
       runner.converge(described_recipe)
     end
 
-    it 'converges successfully' do
-      expect { chef_run }.to_not raise_error
+    it 'installs the haproxy package' do
+      expect(chef_run).to install_package('haproxy')
     end
   end
 end
