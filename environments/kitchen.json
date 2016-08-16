@@ -1,0 +1,52 @@
+{
+  "name": "kitchen",
+  "description": "",
+  "cookbook_versions": {
+
+  },
+  "json_class": "Chef::Environment",
+  "chef_type": "environment",
+  "default_attributes": {
+
+  },
+  "override_attributes": {
+    "haproxy": {
+      "frontends": {
+        "http": {
+          "default_80": {
+            "listen": "0.0.0.0",
+            "port": "80",
+            "acls": [
+              "host-default hdr(host) -i localhost"
+            ],
+            "user_backend": [
+              "default if host-default"
+            ]
+          }
+        },
+        "https": {
+          "default_443": {
+            "listen": "0.0.0.0",
+            "port": "443",
+            "certbagitem": "default_pem",
+            "certfile": "default.pem",
+            "acls": [
+              "host-default hdr(host) -i localhost"
+            ],
+            "user_backend": [
+              "default if host-default"
+            ]
+          }
+        }
+      },
+      "backends": {
+        "default": {
+          "redirect_to_ssl": true,
+          "app_server": {
+            "default": "127.0.0.1:80"
+          }
+        }
+      }
+    }
+  }
+}
