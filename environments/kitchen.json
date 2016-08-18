@@ -19,7 +19,7 @@
             "acls": [
               "host-default hdr(host) -i localhost"
             ],
-            "user_backend": [
+            "use_backend": [
               "default if host-default"
             ]
           }
@@ -33,7 +33,7 @@
             "acls": [
               "host-default hdr(host) -i localhost"
             ],
-            "user_backend": [
+            "use_backend": [
               "default if host-default"
             ]
           }
@@ -43,7 +43,7 @@
         "default": {
           "redirect_to_ssl": true,
           "app_server": {
-            "default": "127.0.0.1:80"
+            "default": "127.0.0.1:81"
           }
         }
       }
