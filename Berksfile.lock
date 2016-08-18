@@ -1,7 +1,7 @@
 DEPENDENCIES
-  haproxy
+  custom_haproxy
     path: .
     metadata: true
 
 GRAPH
-  haproxy (0.1.0)
+  custom_haproxy (0.1.0)

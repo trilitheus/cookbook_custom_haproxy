@@ -25,4 +25,4 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[haproxy::default]
+      - recipe[custom_haproxy::default]

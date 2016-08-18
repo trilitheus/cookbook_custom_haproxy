@@ -1,4 +1,4 @@
-name 'haproxy'
+name 'custom_haproxy'
 maintainer 'The Authors'
 maintainer_email 'you@example.com'
 license 'all_rights'
