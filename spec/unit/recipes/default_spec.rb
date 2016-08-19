@@ -38,7 +38,7 @@ describe 'custom_haproxy::default' do
       }
     end
 
-    %w{ssl errors}.each do |dir|
+    %w(ssl errors).each do |dir|
       it "creates the /etc/haproxy/#{dir} directory" do
         expect(chef_run).to create_directory("/etc/haproxy/#{dir}")
       end
