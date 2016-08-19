@@ -29,7 +29,35 @@ describe 'custom_haproxy::default' do
     end
 
     it 'renders haproxy config' do
-      expect(chef_run).to render_file('/etc/haproxy/haproxy.cfg')
+      expect(chef_run).to render_file('/etc/haproxy/haproxy.cfg').with_content { |content|
+        expect(content).to match(/user haproxy/)
+        expect(content).to match(/group haproxy/)
+        expect(content).to match(/log 127.0.0.1 local2/)
+        expect(content).to match(%r{bind 0.0.0.0:443 ssl crt /etc/haproxy/ssl/default.pem})
+        expect(content).to match(/redirect scheme https if !{ ssl_fc }/)
+      }
+    end
+
+    %w{ssl errors}.each do |dir|
+      it "creates the /etc/haproxy/#{dir} directory" do
+        expect(chef_run).to create_directory("/etc/haproxy/#{dir}")
+      end
+    end
+
+    it 'renders the pem file' do
+      expect(chef_run).to render_file('/etc/haproxy/ssl/default.pem').with_content(/-----BEGIN CERTIFICATE-----/)
+    end
+
+    it 'renders the 503 error file' do
+      expect(chef_run).to render_file('/etc/haproxy/errors/503.http').with_content(/No backend servers are currently available/)
+    end
+
+    it 'enables the haproxy service' do
+      expect(chef_run).to enable_service('haproxy')
+    end
+
+    it 'starts the haproxy service' do
+      expect(chef_run).to start_service('haproxy')
     end
   end
 end
