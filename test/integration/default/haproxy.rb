@@ -28,3 +28,10 @@ describe service('haproxy') do
   it { should be_enabled }
   it { should be_running }
 end
+
+[80, 443].each do |port|
+  describe port(port) do
+    it { should be_listening }
+    its('processes') { should include 'haproxy' }
+  end
+end
