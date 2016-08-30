@@ -16,17 +16,6 @@ front_ends['https'].each do |fe, opts|
   end
 end
 
-template '/etc/haproxy/haproxy.cfg' do
-  user 'root'
-  group 'root'
-  mode '00644'
-  variables(
-    frontends: node['haproxy']['frontends'],
-    backends: node['haproxy']['backends']
-  )
-  notifies :restart, 'service[haproxy]', :delayed
-end
-
 %w(ssl errors).each do |dir|
   directory "/etc/haproxy/#{dir}" do
     user 'root'
@@ -52,4 +41,15 @@ end
 
 service 'haproxy' do
   action [:start, :enable]
+end
+
+template '/etc/haproxy/haproxy.cfg' do
+  user 'root'
+  group 'root'
+  mode '00644'
+  variables(
+    frontends: node['haproxy']['frontends'],
+    backends: node['haproxy']['backends']
+  )
+  notifies :restart, 'service[haproxy]', :delayed
 end
