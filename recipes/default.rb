@@ -3,7 +3,7 @@
 # Recipe:: default
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
-package 'haproxy'
+include_recipe 'haproxy::install_source'
 
 secrets = {}
 front_ends = node['haproxy']['frontends']
@@ -21,6 +21,7 @@ end
     user 'root'
     group 'root'
     mode '700'
+    recursive true
   end
 end
 

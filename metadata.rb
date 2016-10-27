@@ -5,3 +5,5 @@ license 'all_rights'
 description 'Installs/Configures haproxy'
 long_description 'Installs/Configures haproxy'
 version '0.1.0'
+
+depends 'haproxy'
