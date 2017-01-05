@@ -22,8 +22,8 @@ describe 'custom_haproxy::default' do
       end.converge(described_recipe)
     end
 
-    it 'includes the haproxy cookbook default recipe' do
-      expect(chef_run).to include_recipe('haproxy::default')
+    it 'includes the haproxy cookbook install_package recipe' do
+      expect(chef_run).to include_recipe('haproxy::install_package')
     end
 
     it 'creates a template for haproxy' do

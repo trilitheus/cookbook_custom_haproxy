@@ -3,7 +3,7 @@
 # Recipe:: default
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
-include_recipe 'haproxy::default'
+include_recipe 'haproxy::install_package'
 include_recipe 'sysctl::default'
 
 node['custom_haproxy']['sysctl'].each do |k, v|
