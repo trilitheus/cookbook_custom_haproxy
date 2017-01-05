@@ -35,3 +35,11 @@ end
     its('processes') { should include 'haproxy' }
   end
 end
+
+describe kernel_parameter('net.ipv4.ip_local_port_range') do
+  its('value') { should match /1024\t65535/ }
+end
+
+describe kernel_parameter('net.core.somaxconn') do
+  its('value') { should eq 8096 }
+end

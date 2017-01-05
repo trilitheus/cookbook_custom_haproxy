@@ -1,0 +1,17 @@
+unless node['virtualization']['system'] == 'docker'
+  default['custom_haproxy']['sysctl']['net.ipv4.tcp_synack_retries'] = '2'
+  default['custom_haproxy']['sysctl']['net.ipv4.tcp_tw_recycle'] = '1'
+  default['custom_haproxy']['sysctl']['net.core.wmem_max'] = '12582912'
+  default['custom_haproxy']['sysctl']['net.core.rmem_max'] = '12582912'
+  default['custom_haproxy']['sysctl']['net.ipv4.tcp_rmem'] = '20480 174760 25165824'
+  default['custom_haproxy']['sysctl']['net.ipv4.tcp_wmem'] = '20480 174760 25165824'
+  default['custom_haproxy']['sysctl']['net.ipv4.tcp_window_scaling'] = '1'
+  default['custom_haproxy']['sysctl']['net.ipv4.tcp_timestamps'] = '1'
+  default['custom_haproxy']['sysctl']['net.ipv4.tcp_sack'] = '1'
+  default['custom_haproxy']['sysctl']['net.ipv4.tcp_no_metrics_save'] = '1'
+  default['custom_haproxy']['sysctl']['net.core.netdev_max_backlog'] = '10000'
+  default['custom_haproxy']['sysctl']['net.ipv4.tcp_max_syn_backlog'] = '8096'
+end
+
+default['custom_haproxy']['sysctl']['net.ipv4.ip_local_port_range'] = '1024 65535'
+default['custom_haproxy']['sysctl']['net.core.somaxconn'] = '8096'

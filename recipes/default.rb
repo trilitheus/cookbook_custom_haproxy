@@ -4,6 +4,13 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 include_recipe 'haproxy::default'
+include_recipe 'sysctl::default'
+
+node['custom_haproxy']['sysctl'].each do |k, v|
+  sysctl_param k do
+    value v
+  end
+end
 
 secrets = {}
 front_ends = node['haproxy']['frontends']
