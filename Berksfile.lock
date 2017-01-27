@@ -4,4 +4,6 @@ DEPENDENCIES
     metadata: true
 
 GRAPH
-  custom_haproxy (0.1.0)
+  custom_haproxy (0.2.0)
+    keepalived (~> 1.3.0)
+  keepalived (1.3.0)
