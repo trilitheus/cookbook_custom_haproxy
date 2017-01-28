@@ -6,4 +6,4 @@ description 'Installs/Configures haproxy'
 long_description 'Installs/Configures haproxy'
 version '0.2.0'
 
-depends 'keepalived', '~> 1.3.0'
+depends 'keepalived', '~> 3.0.1'
