@@ -59,3 +59,5 @@ template '/etc/haproxy/haproxy.cfg' do
   )
   notifies :restart, 'service[haproxy]', :delayed
 end
+
+include_recipe 'custom_haproxy::keepalived'
