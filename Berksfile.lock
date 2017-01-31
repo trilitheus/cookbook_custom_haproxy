@@ -5,5 +5,3 @@ DEPENDENCIES
 
 GRAPH
   custom_haproxy (0.2.0)
-    keepalived (~> 3.0.1)
-  keepalived (3.0.1)
