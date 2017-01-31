@@ -4,11 +4,6 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
-# No requirement to use internal firewall on openstack
-service 'firewalld' do
-  action [:stop, :disable]
-end
-
 package 'haproxy'
 
 secrets = {}
