@@ -6,7 +6,7 @@
 
 require 'spec_helper'
 
-describe 'custom_haproxy::default' do
+describe 'custom_haproxy::keepalived' do
   context 'When all attributes are default on RHEL family' do
     let(:chef_run) do
       ChefSpec::ServerRunner.new do |node, server|
@@ -22,17 +22,8 @@ describe 'custom_haproxy::default' do
       end.converge(described_recipe)
     end
 
-    it 'stops and disables the firewall' do
-      expect(chef_run).to stop_service('firewalld')
-      expect(chef_run).to disable_service('firewalld')
-    end
-
-    it 'includes the keepalived recipe' do
-      expect(chef_run).to include_recipe('custom_haproxy::keepalived')
-    end
-
-    it 'includes the haproxy recipe' do
-      expect(chef_run).to include_recipe('custom_haproxy::haproxy')
+    it 'installs keepalived package' do
+      expect(chef_run).to install_package('keepalived')
     end
   end
 end
