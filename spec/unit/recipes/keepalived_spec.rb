@@ -22,6 +22,10 @@ describe 'custom_haproxy::keepalived' do
       end.converge(described_recipe)
     end
 
+    it 'installs psmisc package' do
+      expect(chef_run).to install_package('psmisc')
+    end
+
     it 'installs keepalived package' do
       expect(chef_run).to install_package('keepalived')
     end
