@@ -22,6 +22,10 @@ describe 'custom_haproxy::default' do
       end.converge(described_recipe)
     end
 
+    before do
+      stub_command("semodule -l | grep haproxy_restart").and_return(1)
+    end
+
     it 'stops and disables the firewall' do
       expect(chef_run).to stop_service('firewalld')
       expect(chef_run).to disable_service('firewalld')

@@ -6,6 +6,13 @@
 
 package 'haproxy'
 
+cookbook_file '/tmp/haproxy_restart.pp'
+
+bash 'install haproxy_restart semodule' do
+  code 'semodule -i /tmp/haproxy_restart.pp'
+  not_if "semodule -l | grep haproxy_restart"
+end
+
 secrets = {}
 front_ends = node['haproxy']['frontends']
 front_ends['https'].each do |fe, opts|

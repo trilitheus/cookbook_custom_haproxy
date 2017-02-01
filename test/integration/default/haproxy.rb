@@ -2,6 +2,10 @@ describe package('haproxy') do
   it { should be_installed }
 end
 
+describe command('semodule -l | grep haproxy_restart') do
+  its('stdout') { should match(/haproxy_restart/) }
+end
+
 describe file('/etc/haproxy/haproxy.cfg') do
   its('content') { should match(/user haproxy/) }
   its('content') { should match(/group haproxy/) }

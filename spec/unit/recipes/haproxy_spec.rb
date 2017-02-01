@@ -22,6 +22,18 @@ describe 'custom_haproxy::haproxy' do
       end.converge(described_recipe)
     end
 
+    before do
+      stub_command("semodule -l | grep haproxy_restart").and_return(false)
+    end
+
+    it 'creates the cookbook_file /tmp/haproxy_restart.pp' do
+      expect(chef_run).to create_cookbook_file('/tmp/haproxy_restart.pp')
+    end
+
+    it 'installs the haproxy_restart semodule' do
+      expect(chef_run).to run_bash('install haproxy_restart semodule')
+    end
+
     it 'installs the haproxy package' do
       expect(chef_run).to install_package('haproxy')
     end
