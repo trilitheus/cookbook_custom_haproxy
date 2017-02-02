@@ -2,5 +2,6 @@ AllCops:
   Exclude:
     - '.kitchen/**/*'
     - 'vendor/**/*'
+    - 'berks-cookbooks/**/*'
 Metrics/LineLength:
   Enabled: false
