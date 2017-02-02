@@ -23,6 +23,6 @@ platforms:
       pid_one_command: /usr/lib/systemd/systemd
 
 suites:
-  - name: default
+  - name: docker
     run_list:
       - recipe[custom_haproxy::default]
