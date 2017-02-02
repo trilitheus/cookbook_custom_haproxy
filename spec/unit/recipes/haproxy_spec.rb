@@ -23,7 +23,7 @@ describe 'custom_haproxy::haproxy' do
     end
 
     before do
-      stub_command("semodule -l | grep haproxy_restart").and_return(false)
+      stub_command('semodule -l | grep haproxy_restart').and_return(false)
     end
 
     it 'creates the cookbook_file /tmp/haproxy_restart.pp' do

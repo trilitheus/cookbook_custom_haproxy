@@ -23,7 +23,7 @@ describe 'custom_haproxy::default' do
     end
 
     before do
-      stub_command("semodule -l | grep haproxy_restart").and_return(1)
+      stub_command('semodule -l | grep haproxy_restart').and_return(1)
     end
 
     it 'stops and disables the firewall' do
