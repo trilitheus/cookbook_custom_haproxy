@@ -11,6 +11,7 @@ cookbook_file '/tmp/haproxy_restart.pp'
 bash 'install haproxy_restart semodule' do
   code 'semodule -i /tmp/haproxy_restart.pp'
   not_if 'semodule -l | grep haproxy_restart'
+  not_if { node['virtualization']['system'] == 'docker' }
 end
 
 secrets = {}
